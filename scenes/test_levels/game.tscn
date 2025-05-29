@@ -32,3 +32,7 @@ tile_set = SubResource("TileSet_bx38a")
 
 [node name="Cursor" parent="." instance=ExtResource("2_n7gwe")]
 position = Vector2(8, 8)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(56, 64)
+zoom = Vector2(3, 3)

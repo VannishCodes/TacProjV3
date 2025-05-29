@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7oyt8bmmy77y"]
+[gd_scene load_steps=4 format=3 uid="uid://c7oyt8bmmy77y"]
 
 [ext_resource type="Texture2D" uid="uid://ynnneiacoatt" path="res://assets/temp/cursor/cursor.png" id="1_8dyx8"]
+[ext_resource type="Script" uid="uid://bujhj7ipuowgy" path="res://scenes/cursor/cursor.gd" id="1_hu3fh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hu3fh"]
 animations = [{
@@ -17,7 +18,8 @@ animations = [{
 }]
 
 [node name="Cursor" type="Node2D"]
+script = ExtResource("1_hu3fh")
 
 [node name="Animated Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hu3fh")
-frame_progress = 0.0736645
+frame_progress = 0.154347
