@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://dpmui2hylm3b"]
+[gd_scene load_steps=7 format=4 uid="uid://dpmui2hylm3b"]
 
 [ext_resource type="PackedScene" uid="uid://ce1yx7rsal46c" path="res://scenes/grid/grid.tscn" id="1_bx38a"]
+[ext_resource type="Script" uid="uid://bomkb35lmwy3j" path="res://scenes/test_levels/game.gd" id="1_kkc72"]
 [ext_resource type="Texture2D" uid="uid://c46umjjkvskch" path="res://assets/temp/tilesets/test_tileset.png" id="1_ttm66"]
 [ext_resource type="PackedScene" uid="uid://c7oyt8bmmy77y" path="res://scenes/cursor/cursor.tscn" id="2_n7gwe"]
 
@@ -33,6 +34,7 @@ custom_data_layer_0/type = 21
 sources/0 = SubResource("TileSetAtlasSource_n7gwe")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_kkc72")
 
 [node name="Level" type="Node2D" parent="."]
 

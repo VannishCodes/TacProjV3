@@ -1,6 +1,9 @@
 extends Node2D
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_released():
+		return
+	
 	if event.is_action("up"):
 		global_position.y -= Globals.TILE_SIZE
 	elif event.is_action("down"):
