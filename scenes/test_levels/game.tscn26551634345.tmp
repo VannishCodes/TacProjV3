@@ -67,5 +67,3 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
-
-[connection signal="on_move" from="Level/Grid/Cursor" to="CanvasLayer/Tile Info UI" method="_on_cursor_on_move"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7vxdo4pvhqcq"]
+
+[ext_resource type="Script" uid="uid://c3t1y0425stil" path="res://scenes/UI/tile_info_ui.gd" id="1_76gyh"]
+
+[node name="Tile Info UI" type="PanelContainer"]
+offset_right = 32.0
+offset_bottom = 16.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_76gyh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Tile"
+horizontal_alignment = 1
+vertical_alignment = 1
