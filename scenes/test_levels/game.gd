@@ -5,4 +5,4 @@ extends Node2D
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	turn_handler.initialize(current_level.get_active_players())
+	turn_handler.initialize(current_level.get_active_characters())

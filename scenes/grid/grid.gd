@@ -1,8 +1,9 @@
 extends Node2D
 class_name Grid
 
-var grid : AStarGrid2D
 @onready var cursor : AnimatedSprite2D = $Cursor
+var grid : AStarGrid2D
+var player_locations : Dictionary = {}
 
 signal on_cursor_moved
 
@@ -13,6 +14,8 @@ func _ready() -> void:
 	grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	grid.update()
 	on_cursor_moved.emit(cursor.global_position)
+	for character in get_active_characters():
+		player_locations[character] = get_character_grid_location(character)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_released():
@@ -53,9 +56,17 @@ func move_cursor(direction : Vector2i) -> void:
 		on_cursor_moved.emit(cursor.global_position)
 
 #Needs changes
-func get_active_players() -> Array[Character]:
+func get_active_characters() -> Array[Character]:
 	var active_characters : Array[Character] = []
 	for node in $Characters.get_children():
 		active_characters.append(node)
 	return active_characters
+
+func get_character_grid_location(character : Character) -> Vector2i:
+	var tile_map : TileMapLayer
+	tile_map = get_tree().get_first_node_in_group("map_tiles")
 	
+	if not tile_map:
+		return Vector2i(0, 0)
+	
+	return tile_map.local_to_map(character.global_position)
