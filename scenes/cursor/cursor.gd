@@ -5,15 +5,29 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action("up"):
-		global_position.y -= Globals.TILE_SIZE
+		move_cursor(Vector2i.UP)
 	elif event.is_action("down"):
-		global_position.y += Globals.TILE_SIZE
+		move_cursor(Vector2i.DOWN)
 	elif event.is_action("left"):
-		global_position.x -= Globals.TILE_SIZE
+		move_cursor(Vector2i.LEFT)
 	elif event.is_action("right"):
-		global_position.x += Globals.TILE_SIZE
+		move_cursor(Vector2i.RIGHT)
 		
 	get_tile_info()
+
+func move_cursor(direction : Vector2i) -> void:
+	var tile_map : TileMapLayer
+	tile_map = get_tree().get_first_node_in_group("map_tiles")
+	
+	if not tile_map:
+		return
+	
+	var cell : Vector2i = tile_map.local_to_map(self.position)
+	cell += direction
+	
+	if $"..".is_in_boundsv(cell):
+		var global_direction = Vector2(direction) * Globals.TILE_SIZE
+		global_position += global_direction
 
 func get_tile_info() -> void:
 	var tile_map : TileMapLayer

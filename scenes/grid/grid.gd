@@ -19,3 +19,5 @@ func unblock_tiles(tiles : Array[Vector2i]) -> void:
 		if grid.region.has_point(tile):
 			grid.set_point_solid(tile, false)
 	
+func is_in_boundsv(vector : Vector2i) -> bool:
+	return grid.is_in_boundsv(vector)
