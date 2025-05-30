@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dpmui2hylm3b"]
+[gd_scene load_steps=13 format=4 uid="uid://dpmui2hylm3b"]
 
 [ext_resource type="PackedScene" uid="uid://ce1yx7rsal46c" path="res://scenes/grid/grid.tscn" id="1_bx38a"]
 [ext_resource type="Script" uid="uid://bomkb35lmwy3j" path="res://scenes/test_levels/game.gd" id="1_kkc72"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b7vxdo4pvhqcq" path="res://scenes/UI/tile_info_ui.tscn" id="5_vgchg"]
 [ext_resource type="PackedScene" uid="uid://c75wm7hqpalfb" path="res://scenes/characters/character.tscn" id="5_ykiy5"]
 [ext_resource type="PackedScene" uid="uid://d0bhxfpj0ooiv" path="res://scenes/UI/gameplay_menu.tscn" id="6_u67tw"]
+[ext_resource type="PackedScene" uid="uid://cnefm41evaxdu" path="res://scenes/UI/character_info_ui.tscn" id="9_srhbb"]
+[ext_resource type="Script" uid="uid://b8w6sca06v8ou" path="res://scenes/UI/character_info_ui.gd" id="10_odsjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7gwe"]
 texture = ExtResource("1_ttm66")
@@ -53,7 +55,7 @@ tile_set = SubResource("TileSet_bx38a")
 
 [node name="Characters" type="Node" parent="Level/Grid"]
 
-[node name="Thief" parent="Level/Grid/Characters" instance=ExtResource("5_ykiy5")]
+[node name="Ernest, The Thief" parent="Level/Grid/Characters" instance=ExtResource("5_ykiy5")]
 position = Vector2(8, 8)
 
 [node name="Camera2D" type="Camera2D" parent="Level"]
@@ -90,5 +92,17 @@ offset_right = 30.5
 offset_bottom = 33.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Character Info UI" parent="CanvasLayer" instance=ExtResource("9_srhbb")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -23.0
+offset_right = 22.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 0
+size_flags_vertical = 8
+script = ExtResource("10_odsjx")
 
 [connection signal="on_cursor_moved" from="Level/Grid" to="CanvasLayer/Tile Info UI" method="_on_grid_on_cursor_moved"]

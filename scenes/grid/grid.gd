@@ -55,7 +55,6 @@ func move_cursor(direction : Vector2i) -> void:
 		cursor.global_position += global_direction
 		on_cursor_moved.emit(cursor.global_position)
 
-#Needs changes
 func get_active_characters() -> Array[Character]:
 	var active_characters : Array[Character] = []
 	for node in $Characters.get_children():
