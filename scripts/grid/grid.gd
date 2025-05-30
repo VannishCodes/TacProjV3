@@ -4,12 +4,9 @@ var grid : AStarGrid2D
 
 func _ready() -> void:
 	grid = AStarGrid2D.new()
+	grid.region = get_tree().get_first_node_in_group("map_tiles").get_used_rect()
 	grid.cell_size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE)
 	grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	grid.update()
-
-func add_region(rect : Rect2i) -> void:
-	grid.region = rect
 	grid.update()
 	
 func block_tiles(tiles : Array[Vector2i]) -> void:

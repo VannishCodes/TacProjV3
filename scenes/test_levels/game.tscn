@@ -7,32 +7,46 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7gwe"]
 texture = ExtResource("1_ttm66")
 2:2/0 = 0
+2:2/0/custom_data_0 = &"Grass"
 2:3/0 = 0
+2:3/0/custom_data_0 = &"Grass"
 3:3/0 = 0
+3:3/0/custom_data_0 = &"Grass"
 3:2/0 = 0
+3:2/0/custom_data_0 = &"Grass"
 12:1/0 = 0
+12:1/0/custom_data_0 = &"Mountain"
 13:1/0 = 0
+13:1/0/custom_data_0 = &"Mountain"
 14:1/0 = 0
+14:1/0/custom_data_0 = &"Mountain"
 12:0/0 = 0
+12:0/0/custom_data_0 = &"Forest"
 13:0/0 = 0
+13:0/0/custom_data_0 = &"Forest"
 14:0/0 = 0
+14:0/0/custom_data_0 = &"Forest"
 
 [sub_resource type="TileSet" id="TileSet_bx38a"]
+custom_data_layer_0/name = "tile_name"
+custom_data_layer_0/type = 21
 sources/0 = SubResource("TileSetAtlasSource_n7gwe")
 
-[node name="Level" type="Node2D"]
+[node name="Game" type="Node2D"]
 
-[node name="Grid" parent="." instance=ExtResource("1_bx38a")]
+[node name="Level" type="Node2D" parent="."]
 
-[node name="Tiles" type="Node2D" parent="."]
+[node name="Grid" parent="Level" instance=ExtResource("1_bx38a")]
 
-[node name="Ground" type="TileMapLayer" parent="Tiles"]
+[node name="Tiles" type="Node2D" parent="Level"]
+
+[node name="Ground" type="TileMapLayer" parent="Level/Tiles" groups=["map_tiles"]]
 tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAACAAAAAAACAAIAAAADAAAAAAADAAIAAAAEAAAAAAACAAIAAAAFAAAAAAAOAAAAAAAGAAAAAAACAAIAAAAAAAEAAAACAAMAAAABAAEAAAADAAMAAAACAAEAAAACAAMAAAADAAEAAAADAAMAAAAEAAEAAAAOAAAAAAAFAAEAAAAMAAAAAAAGAAEAAAADAAIAAAAGAAIAAAAOAAAAAAAFAAMAAAADAAMAAAAEAAMAAAACAAMAAAADAAIAAAADAAIAAAACAAIAAAACAAIAAAABAAIAAAADAAIAAAAAAAIAAAACAAIAAAAEAAIAAAAMAAAAAAAFAAIAAAAMAAAAAAAGAAMAAAACAAMAAAADAAMAAAADAAMAAAACAAMAAAACAAMAAAAAAAMAAAACAAMAAAABAAMAAAADAAMAAAAAAAQAAAACAAIAAAABAAQAAAADAAIAAAACAAQAAAACAAIAAAADAAQAAAADAAIAAAAEAAQAAAACAAIAAAAFAAQAAAADAAIAAAAGAAQAAAACAAIAAAAGAAUAAAACAAMAAAAFAAUAAAADAAMAAAAEAAUAAAACAAMAAAADAAUAAAADAAMAAAACAAUAAAACAAMAAAAAAAUAAAAOAAEAAAABAAUAAAAMAAEAAAAAAAYAAAAOAAEAAAABAAYAAAANAAEAAAACAAYAAAACAAIAAAADAAYAAAADAAIAAAAEAAYAAAACAAIAAAAFAAYAAAADAAIAAAAGAAYAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_bx38a")
 
-[node name="Cursor" parent="." instance=ExtResource("2_n7gwe")]
+[node name="Cursor" parent="Level" instance=ExtResource("2_n7gwe")]
 position = Vector2(8, 8)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Level"]
 position = Vector2(56, 64)
 zoom = Vector2(3, 3)
