@@ -1,6 +1,6 @@
 extends PanelContainer
 
-func _on_cursor_on_move(cell : Vector2i) -> void:
+func _on_grid_on_cursor_moved(cell : Vector2i) -> void:
 	get_tile_info(cell)
 
 func get_tile_info(cell : Vector2i) -> void:

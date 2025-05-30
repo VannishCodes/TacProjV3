@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://dpmui2hylm3b"]
+[gd_scene load_steps=11 format=4 uid="uid://dpmui2hylm3b"]
 
 [ext_resource type="PackedScene" uid="uid://ce1yx7rsal46c" path="res://scenes/grid/grid.tscn" id="1_bx38a"]
 [ext_resource type="Script" uid="uid://bomkb35lmwy3j" path="res://scenes/test_levels/game.gd" id="1_kkc72"]
 [ext_resource type="Texture2D" uid="uid://c46umjjkvskch" path="res://assets/temp/tilesets/test_tileset.png" id="1_ttm66"]
-[ext_resource type="PackedScene" uid="uid://c7oyt8bmmy77y" path="res://scenes/cursor/cursor.tscn" id="2_n7gwe"]
+[ext_resource type="Script" uid="uid://wf3anjtj0gkr" path="res://scenes/test_levels/level.gd" id="2_aa6x4"]
+[ext_resource type="Script" uid="uid://bmk7lyq6fduvi" path="res://scripts/handlers/turn_handler.gd" id="4_u67tw"]
 [ext_resource type="PackedScene" uid="uid://b7vxdo4pvhqcq" path="res://scenes/UI/tile_info_ui.tscn" id="5_vgchg"]
+[ext_resource type="PackedScene" uid="uid://c75wm7hqpalfb" path="res://scenes/characters/character.tscn" id="5_ykiy5"]
+[ext_resource type="PackedScene" uid="uid://d0bhxfpj0ooiv" path="res://scenes/UI/gameplay_menu.tscn" id="6_u67tw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7gwe"]
 texture = ExtResource("1_ttm66")
@@ -38,6 +41,7 @@ sources/0 = SubResource("TileSetAtlasSource_n7gwe")
 script = ExtResource("1_kkc72")
 
 [node name="Level" type="Node2D" parent="."]
+script = ExtResource("2_aa6x4")
 
 [node name="Grid" parent="Level" instance=ExtResource("1_bx38a")]
 
@@ -47,11 +51,16 @@ script = ExtResource("1_kkc72")
 tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAACAAAAAAACAAIAAAADAAAAAAADAAIAAAAEAAAAAAACAAIAAAAFAAAAAAAOAAAAAAAGAAAAAAACAAIAAAAAAAEAAAACAAMAAAABAAEAAAADAAMAAAACAAEAAAACAAMAAAADAAEAAAADAAMAAAAEAAEAAAAOAAAAAAAFAAEAAAAMAAAAAAAGAAEAAAADAAIAAAAGAAIAAAAOAAAAAAAFAAMAAAADAAMAAAAEAAMAAAACAAMAAAADAAIAAAADAAIAAAACAAIAAAACAAIAAAABAAIAAAADAAIAAAAAAAIAAAACAAIAAAAEAAIAAAAMAAAAAAAFAAIAAAAMAAAAAAAGAAMAAAACAAMAAAADAAMAAAADAAMAAAACAAMAAAACAAMAAAAAAAMAAAACAAMAAAABAAMAAAADAAMAAAAAAAQAAAACAAIAAAABAAQAAAADAAIAAAACAAQAAAACAAIAAAADAAQAAAADAAIAAAAEAAQAAAACAAIAAAAFAAQAAAADAAIAAAAGAAQAAAACAAIAAAAGAAUAAAACAAMAAAAFAAUAAAADAAMAAAAEAAUAAAACAAMAAAADAAUAAAADAAMAAAACAAUAAAACAAMAAAAAAAUAAAAOAAEAAAABAAUAAAAMAAEAAAAAAAYAAAAOAAEAAAABAAYAAAANAAEAAAACAAYAAAACAAIAAAADAAYAAAADAAIAAAAEAAYAAAACAAIAAAAFAAYAAAADAAIAAAAGAAYAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_bx38a")
 
-[node name="Cursor" parent="Level/Grid" instance=ExtResource("2_n7gwe")]
+[node name="Characters" type="Node" parent="Level/Grid"]
+
+[node name="Thief" parent="Level/Grid/Characters" instance=ExtResource("5_ykiy5")]
 position = Vector2(8, 8)
 
-[node name="Camera2D" type="Camera2D" parent="Level/Grid"]
+[node name="Camera2D" type="Camera2D" parent="Level"]
 anchor_mode = 0
+
+[node name="Turn Handler" type="Node2D" parent="."]
+script = ExtResource("4_u67tw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -68,4 +77,18 @@ offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[connection signal="on_move" from="Level/Grid/Cursor" to="CanvasLayer/Tile Info UI" method="_on_cursor_on_move"]
+[node name="Gameplay Menu" parent="CanvasLayer" instance=ExtResource("6_u67tw")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -33.0
+offset_right = 30.5
+offset_bottom = 33.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="on_cursor_moved" from="Level/Grid" to="CanvasLayer/Tile Info UI" method="_on_grid_on_cursor_moved"]

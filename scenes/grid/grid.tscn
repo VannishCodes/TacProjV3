@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce1yx7rsal46c"]
+[gd_scene load_steps=4 format=3 uid="uid://ce1yx7rsal46c"]
 
 [ext_resource type="Script" uid="uid://008gib5x8rjb" path="res://scenes/grid/grid.gd" id="1_x0e5n"]
+[ext_resource type="Texture2D" uid="uid://ynnneiacoatt" path="res://assets/temp/cursor/cursor.png" id="2_yuyu4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yuyu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yuyu4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Grid" type="Node2D"]
 script = ExtResource("1_x0e5n")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_yuyu4")
