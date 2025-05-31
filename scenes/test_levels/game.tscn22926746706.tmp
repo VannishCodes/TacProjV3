@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dpmui2hylm3b"]
+[gd_scene load_steps=14 format=4 uid="uid://dpmui2hylm3b"]
 
 [ext_resource type="PackedScene" uid="uid://ce1yx7rsal46c" path="res://scenes/grid/grid.tscn" id="1_bx38a"]
 [ext_resource type="Script" uid="uid://bomkb35lmwy3j" path="res://scenes/test_levels/game.gd" id="1_kkc72"]
@@ -11,8 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://d0bhxfpj0ooiv" path="res://scenes/UI/gameplay_menu.tscn" id="6_u67tw"]
 [ext_resource type="PackedScene" uid="uid://cnefm41evaxdu" path="res://scenes/UI/character_info_ui.tscn" id="9_srhbb"]
 [ext_resource type="Script" uid="uid://b8w6sca06v8ou" path="res://scenes/UI/character_info_ui.gd" id="10_odsjx"]
-[ext_resource type="PackedScene" uid="uid://b2ds64nx8ipu3" path="res://scenes/UI/turn_info_ui.tscn" id="12_hiqsf"]
-[ext_resource type="Script" uid="uid://dkohwth1m7lb2" path="res://scenes/UI/turn_info_ui.gd" id="13_otnwq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7gwe"]
 texture = ExtResource("1_ttm66")
@@ -109,17 +107,5 @@ grow_vertical = 0
 size_flags_vertical = 8
 script = ExtResource("10_odsjx")
 
-[node name="Turn Info UI" parent="UI Handler" instance=ExtResource("12_hiqsf")]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -9.0
-offset_right = 9.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("13_otnwq")
-
+[connection signal="on_cursor_moved" from="Level/Grid" to="UI Handler" method="_on_grid_on_cursor_moved"]
 [connection signal="on_cursor_moved" from="Level/Grid" to="UI Handler/Tile Info UI" method="_on_grid_on_cursor_moved"]
-[connection signal="on_cursor_moved" from="Level/Grid" to="UI Handler/Character Info UI" method="_on_grid_on_cursor_moved"]
-[connection signal="turn_queue_changed" from="Turn Handler" to="UI Handler/Turn Info UI" method="_on_turn_handler_turn_queue_changed"]

@@ -2,7 +2,7 @@ extends Node2D
 class_name Grid
 
 @onready var cursor : AnimatedSprite2D = $Cursor
-@onready var tilemap : TileHandler
+@onready var tile_handler : TileHandler
 var grid : AStarGrid2D
 var player_locations : Dictionary = {}
 
@@ -10,7 +10,7 @@ signal on_cursor_moved
 
 func _ready() -> void:
 	var tile_map_layer : TileMapLayer = get_tree().get_first_node_in_group("map_tiles")
-	tilemap = $"Tile Handler"
+	tile_handler = $"Tile Handler"
 	
 	grid = AStarGrid2D.new()
 	grid.region = tile_map_layer.get_used_rect()
@@ -18,13 +18,11 @@ func _ready() -> void:
 	grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	grid.update()
 	
-	on_cursor_moved.emit(cursor.global_position)
-	
 	var tile : Tile
 	var tile_data : TileData
 	for x in tile_map_layer.get_used_rect().size.x:
 		for y in tile_map_layer.get_used_rect().size.y:
-			tile = tilemap.add_tile(Vector2i(x,y))
+			tile = tile_handler.add_tile(Vector2i(x,y))
 			tile_data = tile_map_layer.get_cell_tile_data(Vector2i(x,y))
 			if tile_data:
 				var tile_name : StringName = tile_data.get_custom_data("tile_name")
@@ -35,7 +33,9 @@ func _ready() -> void:
 		var grid_location : Vector2i
 		grid_location = get_character_grid_location(character)
 		player_locations[character] = grid_location
-		tilemap.tiles[grid_location].character = character
+		tile_handler.get_tile(grid_location).character = character
+	
+	on_cursor_moved.emit(tile_handler.get_tile(tile_map_layer.local_to_map(cursor.global_position)))
 		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_released():
@@ -73,7 +73,7 @@ func move_cursor(direction : Vector2i) -> void:
 	if grid.is_in_boundsv(cell):
 		var global_direction = Vector2(direction) * Globals.TILE_SIZE
 		cursor.global_position += global_direction
-		on_cursor_moved.emit(cursor.global_position)
+		on_cursor_moved.emit(tile_handler.get_tile(cell))
 
 func get_active_characters() -> Array[Character]:
 	var active_characters : Array[Character] = []
