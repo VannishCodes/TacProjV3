@@ -35,7 +35,8 @@ func manage_turn() -> void:
 func move_index() -> void:
 	current_character_index = (current_character_index + 1) % active_characters.size()
 	current_character = active_characters[current_character_index]
-	
+
+#EDIT
 func end_turn() -> void:
 	var key : int = turn_queue.find_key(current_character)
 	turn_queue[key+20] = current_character

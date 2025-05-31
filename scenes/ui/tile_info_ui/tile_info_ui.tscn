@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7vxdo4pvhqcq"]
 
-[ext_resource type="Script" uid="uid://c3t1y0425stil" path="res://scenes/UI/tile_info_ui.gd" id="1_76gyh"]
+[ext_resource type="Script" uid="uid://c3t1y0425stil" path="res://scenes/ui/tile_info_ui/tile_info_ui.gd" id="1_76gyh"]
 
 [node name="Tile Info UI" type="PanelContainer"]
 offset_right = 32.0

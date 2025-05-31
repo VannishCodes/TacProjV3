@@ -1,19 +1,17 @@
-[gd_scene load_steps=17 format=4 uid="uid://dpmui2hylm3b"]
+[gd_scene load_steps=15 format=4 uid="uid://dpmui2hylm3b"]
 
 [ext_resource type="PackedScene" uid="uid://ce1yx7rsal46c" path="res://scenes/grid/grid.tscn" id="1_bx38a"]
 [ext_resource type="Script" uid="uid://bomkb35lmwy3j" path="res://scenes/test_levels/game.gd" id="1_kkc72"]
 [ext_resource type="Texture2D" uid="uid://c46umjjkvskch" path="res://assets/temp/tilesets/test_tileset.png" id="1_ttm66"]
 [ext_resource type="Script" uid="uid://wf3anjtj0gkr" path="res://scenes/test_levels/level.gd" id="2_aa6x4"]
-[ext_resource type="Script" uid="uid://50r4j6kgb01k" path="res://scenes/test_levels/tile_handler.gd" id="4_0fu5y"]
+[ext_resource type="Script" uid="uid://50r4j6kgb01k" path="res://scripts/handlers/tile_handler.gd" id="4_0fu5y"]
 [ext_resource type="Script" uid="uid://bmk7lyq6fduvi" path="res://scripts/handlers/turn_handler.gd" id="4_u67tw"]
-[ext_resource type="PackedScene" uid="uid://b7vxdo4pvhqcq" path="res://scenes/UI/tile_info_ui.tscn" id="5_vgchg"]
-[ext_resource type="PackedScene" uid="uid://c75wm7hqpalfb" path="res://scenes/characters/character.tscn" id="5_ykiy5"]
-[ext_resource type="PackedScene" uid="uid://d0bhxfpj0ooiv" path="res://scenes/UI/gameplay_menu.tscn" id="6_u67tw"]
-[ext_resource type="PackedScene" uid="uid://df8bqpnhfkosl" path="res://scenes/characters/enemies/skeleton_(to_delete).tscn" id="7_4vc24"]
-[ext_resource type="PackedScene" uid="uid://cnefm41evaxdu" path="res://scenes/UI/character_info_ui.tscn" id="9_srhbb"]
-[ext_resource type="Script" uid="uid://b8w6sca06v8ou" path="res://scenes/UI/character_info_ui.gd" id="10_odsjx"]
-[ext_resource type="PackedScene" uid="uid://b2ds64nx8ipu3" path="res://scenes/UI/turn_info_ui.tscn" id="12_hiqsf"]
-[ext_resource type="Script" uid="uid://dkohwth1m7lb2" path="res://scenes/UI/turn_info_ui.gd" id="13_otnwq"]
+[ext_resource type="PackedScene" uid="uid://b7vxdo4pvhqcq" path="res://scenes/ui/tile_info_ui/tile_info_ui.tscn" id="5_vgchg"]
+[ext_resource type="PackedScene" uid="uid://d0bhxfpj0ooiv" path="res://scenes/ui/gameplay_menu/gameplay_menu.tscn" id="6_u67tw"]
+[ext_resource type="PackedScene" uid="uid://cnefm41evaxdu" path="res://scenes/ui/character_info_ui/character_info_ui.tscn" id="9_srhbb"]
+[ext_resource type="Script" uid="uid://b8w6sca06v8ou" path="res://scenes/ui/character_info_ui/character_info_ui.gd" id="10_odsjx"]
+[ext_resource type="PackedScene" uid="uid://b2ds64nx8ipu3" path="res://scenes/ui/turn_info_ui/turn_info_ui.tscn" id="12_hiqsf"]
+[ext_resource type="Script" uid="uid://dkohwth1m7lb2" path="res://scenes/ui/turn_info_ui/turn_info_ui.gd" id="13_otnwq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7gwe"]
 texture = ExtResource("1_ttm66")
@@ -59,15 +57,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAACAAAAAAACAAI
 tile_set = SubResource("TileSet_bx38a")
 
 [node name="Characters" type="Node" parent="Level/Grid"]
-
-[node name="Ernest, The Thief" parent="Level/Grid/Characters" instance=ExtResource("5_ykiy5")]
-position = Vector2(8, 8)
-
-[node name="Skeleton (To Delete)" parent="Level/Grid/Characters" instance=ExtResource("7_4vc24")]
-position = Vector2(72, 40)
-
-[node name="Clone of Ernest" parent="Level/Grid/Characters" instance=ExtResource("5_ykiy5")]
-position = Vector2(104, 104)
 
 [node name="Camera2D" type="Camera2D" parent="Level"]
 anchor_mode = 0

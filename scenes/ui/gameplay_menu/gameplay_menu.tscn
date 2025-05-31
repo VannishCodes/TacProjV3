@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0bhxfpj0ooiv"]
 
-[ext_resource type="Script" uid="uid://vkcvi8151kvo" path="res://scenes/UI/gameplay_menu.gd" id="1_3inwl"]
+[ext_resource type="Script" uid="uid://vkcvi8151kvo" path="res://scenes/ui/gameplay_menu/gameplay_menu.gd" id="1_3inwl"]
 
 [node name="Gameplay Menu" type="PanelContainer"]
 anchors_preset = 15
