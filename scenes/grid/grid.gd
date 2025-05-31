@@ -2,21 +2,41 @@ extends Node2D
 class_name Grid
 
 @onready var cursor : AnimatedSprite2D = $Cursor
+@onready var tilemap : TileHandler
 var grid : AStarGrid2D
 var player_locations : Dictionary = {}
 
 signal on_cursor_moved
 
 func _ready() -> void:
+	var tile_map_layer : TileMapLayer = get_tree().get_first_node_in_group("map_tiles")
+	tilemap = $"Tile Handler"
+	
 	grid = AStarGrid2D.new()
-	grid.region = get_tree().get_first_node_in_group("map_tiles").get_used_rect()
+	grid.region = tile_map_layer.get_used_rect()
 	grid.cell_size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE)
 	grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	grid.update()
-	on_cursor_moved.emit(cursor.global_position)
-	for character in get_active_characters():
-		player_locations[character] = get_character_grid_location(character)
 	
+	on_cursor_moved.emit(cursor.global_position)
+	
+	var tile : Tile
+	var tile_data : TileData
+	for x in tile_map_layer.get_used_rect().size.x:
+		for y in tile_map_layer.get_used_rect().size.y:
+			tile = tilemap.add_tile(Vector2i(x,y))
+			tile_data = tile_map_layer.get_cell_tile_data(Vector2i(x,y))
+			if tile_data:
+				var tile_name : StringName = tile_data.get_custom_data("tile_name")
+				if tile_name:
+					tile.terrain_type = tile_name
+			
+	for character in get_active_characters():
+		var grid_location : Vector2i
+		grid_location = get_character_grid_location(character)
+		player_locations[character] = grid_location
+		tilemap.tiles[grid_location].character = character
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_released():
 		return

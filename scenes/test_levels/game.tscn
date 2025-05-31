@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://dpmui2hylm3b"]
+[gd_scene load_steps=14 format=4 uid="uid://dpmui2hylm3b"]
 
 [ext_resource type="PackedScene" uid="uid://ce1yx7rsal46c" path="res://scenes/grid/grid.tscn" id="1_bx38a"]
 [ext_resource type="Script" uid="uid://bomkb35lmwy3j" path="res://scenes/test_levels/game.gd" id="1_kkc72"]
 [ext_resource type="Texture2D" uid="uid://c46umjjkvskch" path="res://assets/temp/tilesets/test_tileset.png" id="1_ttm66"]
 [ext_resource type="Script" uid="uid://wf3anjtj0gkr" path="res://scenes/test_levels/level.gd" id="2_aa6x4"]
+[ext_resource type="Script" uid="uid://50r4j6kgb01k" path="res://scenes/test_levels/tilemap.gd" id="4_0fu5y"]
 [ext_resource type="Script" uid="uid://bmk7lyq6fduvi" path="res://scripts/handlers/turn_handler.gd" id="4_u67tw"]
 [ext_resource type="PackedScene" uid="uid://b7vxdo4pvhqcq" path="res://scenes/UI/tile_info_ui.tscn" id="5_vgchg"]
 [ext_resource type="PackedScene" uid="uid://c75wm7hqpalfb" path="res://scenes/characters/character.tscn" id="5_ykiy5"]
@@ -47,9 +48,10 @@ script = ExtResource("2_aa6x4")
 
 [node name="Grid" parent="Level" instance=ExtResource("1_bx38a")]
 
-[node name="Tilemap" type="Node2D" parent="Level/Grid"]
+[node name="Tile Handler" type="Node2D" parent="Level/Grid"]
+script = ExtResource("4_0fu5y")
 
-[node name="Ground" type="TileMapLayer" parent="Level/Grid/Tilemap" groups=["map_tiles"]]
+[node name="Ground" type="TileMapLayer" parent="Level/Grid/Tile Handler" groups=["map_tiles"]]
 tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAACAAAAAAACAAIAAAADAAAAAAADAAIAAAAEAAAAAAACAAIAAAAFAAAAAAAOAAAAAAAGAAAAAAACAAIAAAAAAAEAAAACAAMAAAABAAEAAAADAAMAAAACAAEAAAACAAMAAAADAAEAAAADAAMAAAAEAAEAAAAOAAAAAAAFAAEAAAAMAAAAAAAGAAEAAAADAAIAAAAGAAIAAAAOAAAAAAAFAAMAAAADAAMAAAAEAAMAAAACAAMAAAADAAIAAAADAAIAAAACAAIAAAACAAIAAAABAAIAAAADAAIAAAAAAAIAAAACAAIAAAAEAAIAAAAMAAAAAAAFAAIAAAAMAAAAAAAGAAMAAAACAAMAAAADAAMAAAADAAMAAAACAAMAAAACAAMAAAAAAAMAAAACAAMAAAABAAMAAAADAAMAAAAAAAQAAAACAAIAAAABAAQAAAADAAIAAAACAAQAAAACAAIAAAADAAQAAAADAAIAAAAEAAQAAAACAAIAAAAFAAQAAAADAAIAAAAGAAQAAAACAAIAAAAGAAUAAAACAAMAAAAFAAUAAAADAAMAAAAEAAUAAAACAAMAAAADAAUAAAADAAMAAAACAAUAAAACAAMAAAAAAAUAAAAOAAEAAAABAAUAAAAMAAEAAAAAAAYAAAAOAAEAAAABAAYAAAANAAEAAAACAAYAAAACAAIAAAADAAYAAAADAAIAAAAEAAYAAAACAAIAAAAFAAYAAAADAAIAAAAGAAYAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_bx38a")
 
