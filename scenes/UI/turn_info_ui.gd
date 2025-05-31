@@ -5,9 +5,12 @@ func _on_turn_handler_turn_queue_changed(turn_queue : Dictionary) -> void:
 	var keys : Array[int]
 	keys = turn_queue.keys()
 	
+	for child in $HBoxContainer.get_children():
+		$HBoxContainer.remove_child(child)
+		child.queue_free()
+	
 	var character : Character
 	var texture_rect : TextureRect
-	var a : AnimatedSprite2D
 	for key in keys:
 		character = turn_queue[key]
 		texture_rect = TextureRect.new()
