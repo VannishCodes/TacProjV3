@@ -10,6 +10,7 @@ signal on_cursor_moved
 
 func _ready() -> void:
 	var tile_map_layer : TileMapLayer = get_tree().get_first_node_in_group("map_tiles")
+	
 	tile_handler = $"Tile Handler"
 	
 	grid = AStarGrid2D.new()
@@ -18,6 +19,12 @@ func _ready() -> void:
 	grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	grid.update()
 	
+	initialize_tiles(tile_map_layer)
+	initialize_character_locations()
+	
+	on_cursor_moved.emit(tile_handler.get_tile(tile_map_layer.local_to_map(cursor.global_position)))
+
+func initialize_tiles(tile_map_layer : TileMapLayer) -> void:
 	var tile : Tile
 	var tile_data : TileData
 	for x in tile_map_layer.get_used_rect().size.x:
@@ -28,15 +35,14 @@ func _ready() -> void:
 				var tile_name : StringName = tile_data.get_custom_data("tile_name")
 				if tile_name:
 					tile.terrain_type = tile_name
-			
+
+func initialize_character_locations() -> void:
 	for character in get_active_characters():
 		var grid_location : Vector2i
 		grid_location = get_character_grid_location(character)
 		player_locations[character] = grid_location
 		tile_handler.get_tile(grid_location).character = character
-	
-	on_cursor_moved.emit(tile_handler.get_tile(tile_map_layer.local_to_map(cursor.global_position)))
-		
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_released():
 		return
