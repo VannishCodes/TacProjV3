@@ -1,42 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c75wm7hqpalfb"]
+[gd_scene load_steps=2 format=3 uid="uid://c75wm7hqpalfb"]
 
 [ext_resource type="Script" uid="uid://657su856cjqg" path="res://scenes/characters/character.gd" id="1_x31xa"]
-[ext_resource type="Texture2D" uid="uid://cl03hwiajqkdl" path="res://assets/temp/map_sprites/thief.png" id="2_1bdar"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e22cc"]
-atlas = ExtResource("2_1bdar")
-region = Rect2(160, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2qjml"]
-atlas = ExtResource("2_1bdar")
-region = Rect2(160, 160, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ma1fs"]
-atlas = ExtResource("2_1bdar")
-region = Rect2(160, 320, 160, 160)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_e22cc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e22cc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2qjml")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ma1fs")
-}],
-"loop": true,
-"name": &"default",
-"speed": 4.0
-}]
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_x31xa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-sprite_frames = SubResource("SpriteFrames_e22cc")
 autoplay = "default"
-frame_progress = 0.832129

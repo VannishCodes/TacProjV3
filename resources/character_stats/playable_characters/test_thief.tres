@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=8 format=3 uid="uid://b3ugrw0ehf36n"]
+
+[ext_resource type="Script" uid="uid://b1retqvsjgl4i" path="res://resources/character_stats/character_stats.gd" id="1_qfoji"]
+[ext_resource type="Texture2D" uid="uid://cl03hwiajqkdl" path="res://assets/temp/map_sprites/thief.png" id="2_mpmcr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpmcr"]
+atlas = ExtResource("2_mpmcr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd5d3"]
+atlas = ExtResource("2_mpmcr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdylf"]
+atlas = ExtResource("2_mpmcr")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok1jw"]
+atlas = ExtResource("2_mpmcr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qbf7i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd5d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdylf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok1jw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[resource]
+script = ExtResource("1_qfoji")
+name = &"Thief"
+sprite_frames = SubResource("SpriteFrames_qbf7i")
+default_texture = SubResource("AtlasTexture_mpmcr")
+wait_timer = 20
+metadata/_custom_type_script = "uid://b1retqvsjgl4i"
