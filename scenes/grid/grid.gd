@@ -122,6 +122,7 @@ func calculate_walkable_tiles(character : Character) -> Array:
 					if !walkable_tiles.has(new_position):
 						if is_tile_reachable(origin, new_position, reach):
 							walkable_tiles.append(new_position)
+	tile_handler.paint_movement_tiles(walkable_tiles)
 	return walkable_tiles
 	
 func is_tile_reachable(origin : Vector2i, destination : Vector2i, reach : int) -> bool:

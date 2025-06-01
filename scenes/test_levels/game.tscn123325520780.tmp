@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dpmui2hylm3b"]
+[gd_scene load_steps=23 format=4 uid="uid://dpmui2hylm3b"]
 
 [ext_resource type="PackedScene" uid="uid://ce1yx7rsal46c" path="res://scenes/grid/grid.tscn" id="1_bx38a"]
 [ext_resource type="Script" uid="uid://bomkb35lmwy3j" path="res://scenes/test_levels/game.gd" id="1_kkc72"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c75wm7hqpalfb" path="res://scenes/characters/character.tscn" id="5_ykiy5"]
 [ext_resource type="Texture2D" uid="uid://bb2vmwag4latk" path="res://assets/temp/overlay/blue_square.png" id="6_oihv0"]
 [ext_resource type="PackedScene" uid="uid://d0bhxfpj0ooiv" path="res://scenes/ui/gameplay_menu/gameplay_menu.tscn" id="6_u67tw"]
-[ext_resource type="Shader" uid="uid://bfmyd65dcxcay" path="res://shaders/transparency.gdshader" id="6_v3jua"]
 [ext_resource type="Resource" uid="uid://b3ugrw0ehf36n" path="res://resources/character_stats/playable_characters/test_thief.tres" id="7_4vc24"]
 [ext_resource type="Texture2D" uid="uid://brfjhc8l1khqa" path="res://assets/temp/overlay/red_square.png" id="7_v3jua"]
 [ext_resource type="Resource" uid="uid://c7mfpulfmbcjs" path="res://resources/character_stats/playable_characters/test_skeleton.tres" id="8_a4tu8"]
@@ -47,10 +46,6 @@ custom_data_layer_0/name = "tile_name"
 custom_data_layer_0/type = 21
 sources/0 = SubResource("TileSetAtlasSource_n7gwe")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pr6a"]
-shader = ExtResource("6_v3jua")
-shader_parameter/alpha = 0.4
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3pr6a"]
 texture = ExtResource("6_oihv0")
 0:0/0 = 0
@@ -79,7 +74,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAACAAAAAAACAAI
 tile_set = SubResource("TileSet_bx38a")
 
 [node name="Overlay" type="TileMapLayer" parent="Level/Grid/Tile Handler" groups=["map_tiles"]]
-material = SubResource("ShaderMaterial_3pr6a")
 tile_set = SubResource("TileSet_ud3sp")
 
 [node name="Characters" type="Node" parent="Level/Grid"]
