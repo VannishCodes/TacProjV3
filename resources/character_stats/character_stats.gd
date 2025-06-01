@@ -11,3 +11,5 @@ class_name CharacterStats
 #Variable below is temporary
 @export var wait_timer : int = 20
 @export var movement_speed : int = 4
+@export var min_attack_range : int = 1
+@export var max_attack_range : int = 1

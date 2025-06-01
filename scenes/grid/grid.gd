@@ -97,8 +97,34 @@ func get_character_grid_location(character : Character) -> Vector2i:
 	return tile_map.local_to_map(character.global_position)
 	
 func _on_turn_handler_current_character_changed(character : Character) -> void:
+	tile_handler.clear_paint()
 	if character.is_playable():
-		calculate_walkable_tiles(character)
+		tile_handler.paint_attack_tiles(calculate_targetable_tiles(character))
+		tile_handler.paint_movement_tiles(calculate_walkable_tiles(character))
+		
+func calculate_targetable_tiles(character : Character) -> Array:
+	var targetable_tiles : Array = []
+	var origin : Vector2i = character_locations[character]
+	var new_position : Vector2i
+	var reach : int = character.stats.movement_speed + character.stats.max_attack_range + 1
+	
+	for x in reach:
+		for y in reach:
+			if x + y <= reach:
+				for i in 4:
+					match i:
+						0:
+							new_position = origin + Vector2i(x, y)
+						1:
+							new_position = origin + Vector2i(-x, y)
+						2:
+							new_position = origin + Vector2i(x, -y)
+						3:
+							new_position = origin + Vector2i(-x, -y)
+					if !targetable_tiles.has(new_position):
+						if is_target_reachable(origin, new_position, character):
+							targetable_tiles.append(new_position)
+	return targetable_tiles
 		
 func calculate_walkable_tiles(character : Character) -> Array:
 	var walkable_tiles : Array = []
@@ -120,19 +146,30 @@ func calculate_walkable_tiles(character : Character) -> Array:
 						3:
 							new_position = origin + Vector2i(-x, -y)
 					if !walkable_tiles.has(new_position):
-						if is_tile_reachable(origin, new_position, reach):
+						if is_tile_reachable(origin, new_position, character):
 							walkable_tiles.append(new_position)
-	tile_handler.paint_movement_tiles(walkable_tiles)
 	return walkable_tiles
 	
-func is_tile_reachable(origin : Vector2i, destination : Vector2i, reach : int) -> bool:
+func is_tile_reachable(origin : Vector2i, destination : Vector2i, character : Character) -> bool:
 	if !grid.is_in_boundsv(destination):
 		return false
 		
 	if grid.is_point_solid(destination):
 		return false
 		
-	if !grid.get_point_path(origin, destination, false).size() <= reach:
+	if grid.get_point_path(origin, destination, false).size() > character.stats.movement_speed + 1:
+		return false
+		
+	return true
+	
+func is_target_reachable(origin : Vector2i, destination : Vector2i, character : Character) -> bool:
+	if !grid.is_in_boundsv(destination):
+		return false
+		
+	if grid.get_point_path(origin, destination, true).size() < character.stats.min_attack_range + 1:
+		return false
+		
+	if grid.get_point_path(origin, destination, true).size() > character.stats.movement_speed + character.stats.max_attack_range + 1:
 		return false
 		
 	return true

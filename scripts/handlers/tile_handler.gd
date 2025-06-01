@@ -11,6 +11,9 @@ func add_tile(coords : Vector2i) -> Tile:
 func get_tile(coords : Vector2i) -> Tile:
 	return tiles[coords]
 
+func clear_paint() -> void:
+	$Overlay.clear()
+
 func paint_movement_tiles(array : Array) -> void:
 	for tile in array:
 		$Overlay.set_cell(tile, 0, Vector2i(0, 0), 0)
