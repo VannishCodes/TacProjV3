@@ -8,4 +8,5 @@ class_name CharacterStats
 
 #Basic Stats
 #Variable below is temporary
-@export var wait_timer : int
+@export var wait_timer : int = 20
+@export var movement_speed : int = 4
