@@ -9,6 +9,10 @@ var turn_queue : Array[CountablePair]
 signal turn_queue_changed
 signal current_character_changed
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("act"):
+		end_turn()
+
 func initialize(characters : Array[Character]) -> void:
 	active_characters = characters
 	initialize_turn_queue()

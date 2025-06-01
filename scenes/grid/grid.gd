@@ -98,6 +98,7 @@ func get_character_grid_location(character : Character) -> Vector2i:
 	
 func _on_turn_handler_current_character_changed(character : Character) -> void:
 	tile_handler.clear_paint()
+	cursor.global_position = character.global_position
 	if character.is_playable():
 		tile_handler.paint_attack_tiles(calculate_targetable_tiles(character))
 		tile_handler.paint_movement_tiles(calculate_walkable_tiles(character))
