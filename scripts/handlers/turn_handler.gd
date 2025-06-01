@@ -5,7 +5,9 @@ var current_character : Character
 var active_characters : Array[Character]
 
 var turn_queue : Array[CountablePair]
+
 signal turn_queue_changed
+signal current_character_changed
 
 func initialize(characters : Array[Character]) -> void:
 	active_characters = characters
@@ -26,6 +28,7 @@ func connect_characters() -> void:
 func manage_turn() -> void:
 	skip_time(turn_queue.front().first)
 	current_character = turn_queue.pop_front().second
+	current_character_changed.emit(current_character)
 	current_character.play_turn()
 
 func skip_time(time : int) -> void:

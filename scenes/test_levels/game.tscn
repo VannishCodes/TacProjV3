@@ -64,7 +64,7 @@ tile_set = SubResource("TileSet_bx38a")
 [node name="Characters" type="Node" parent="Level/Grid"]
 
 [node name="Character" parent="Level/Grid/Characters" instance=ExtResource("5_ykiy5")]
-position = Vector2(8, 8)
+position = Vector2(24, 24)
 stats = ExtResource("7_4vc24")
 
 [node name="Character2" parent="Level/Grid/Characters" instance=ExtResource("5_ykiy5")]
@@ -131,4 +131,5 @@ script = ExtResource("13_otnwq")
 
 [connection signal="on_cursor_moved" from="Level/Grid" to="UI Handler/Tile Info UI" method="_on_grid_on_cursor_moved"]
 [connection signal="on_cursor_moved" from="Level/Grid" to="UI Handler/Character Info UI" method="_on_grid_on_cursor_moved"]
+[connection signal="current_character_changed" from="Turn Handler" to="Level/Grid" method="_on_turn_handler_current_character_changed"]
 [connection signal="turn_queue_changed" from="Turn Handler" to="UI Handler/Turn Info UI" method="_on_turn_handler_turn_queue_changed"]

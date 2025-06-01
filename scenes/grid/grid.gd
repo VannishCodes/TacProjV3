@@ -4,7 +4,7 @@ class_name Grid
 @onready var cursor : AnimatedSprite2D = $Cursor
 @onready var tile_handler : TileHandler
 var grid : AStarGrid2D
-var player_locations : Dictionary = {}
+var character_locations : Dictionary = {}
 
 signal on_cursor_moved
 
@@ -40,7 +40,7 @@ func initialize_character_locations() -> void:
 	for character in get_active_characters():
 		var grid_location : Vector2i
 		grid_location = get_character_grid_location(character)
-		player_locations[character] = grid_location
+		character_locations[character] = grid_location
 		tile_handler.get_tile(grid_location).character = character
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -95,3 +95,43 @@ func get_character_grid_location(character : Character) -> Vector2i:
 		return Vector2i(0, 0)
 	
 	return tile_map.local_to_map(character.global_position)
+	
+func _on_turn_handler_current_character_changed(character : Character) -> void:
+	if character.is_playable():
+		calculate_walkable_tiles(character)
+		
+func calculate_walkable_tiles(character : Character) -> Array:
+	var walkable_tiles : Array = []
+	var origin : Vector2i = character_locations[character]
+	var new_position : Vector2i
+	var reach : int = character.stats.movement_speed + 1
+	
+	for x in reach:
+		for y in reach:
+			if x + y <= reach:
+				for i in 4:
+					match i:
+						0:
+							new_position = origin + Vector2i(x, y)
+						1:
+							new_position = origin + Vector2i(-x, y)
+						2:
+							new_position = origin + Vector2i(x, -y)
+						3:
+							new_position = origin + Vector2i(-x, -y)
+					if !walkable_tiles.has(new_position):
+						if is_tile_reachable(origin, new_position, reach):
+							walkable_tiles.append(new_position)
+	return walkable_tiles
+	
+func is_tile_reachable(origin : Vector2i, destination : Vector2i, reach : int) -> bool:
+	if !grid.is_in_boundsv(destination):
+		return false
+		
+	if grid.is_point_solid(destination):
+		return false
+		
+	if !grid.get_point_path(origin, destination, false).size() <= reach:
+		return false
+		
+	return true

@@ -13,3 +13,6 @@ func _ready() -> void:
 
 func play_turn() -> void:
 	pass
+	
+func is_playable() -> bool:
+	return self.stats.playable

@@ -5,6 +5,7 @@ class_name CharacterStats
 @export var name : StringName
 @export var sprite_frames : SpriteFrames
 @export var default_texture : Texture2D
+@export var playable : bool = false
 
 #Basic Stats
 #Variable below is temporary
