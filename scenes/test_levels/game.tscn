@@ -92,9 +92,6 @@ stats = ExtResource("7_4vc24")
 position = Vector2(72, 56)
 stats = ExtResource("8_a4tu8")
 
-[node name="Camera2D" type="Camera2D" parent="Level"]
-anchor_mode = 0
-
 [node name="Turn Handler" type="Node2D" parent="."]
 script = ExtResource("4_u67tw")
 

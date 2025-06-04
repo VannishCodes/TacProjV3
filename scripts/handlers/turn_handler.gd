@@ -31,6 +31,7 @@ func connect_characters() -> void:
 
 func manage_turn() -> void:
 	skip_time(turn_queue.front().first)
+	turn_queue_changed.emit(turn_queue)
 	current_character = turn_queue.pop_front().second
 	current_character_changed.emit(current_character)
 	current_character.play_turn()
@@ -42,7 +43,6 @@ func skip_time(time : int) -> void:
 func end_turn() -> void:
 	turn_queue.append(CountablePair.new(current_character.stats.wait_timer, current_character))
 	turn_queue.sort_custom(sort)
-	turn_queue_changed.emit(turn_queue)
 	manage_turn()
 	
 func sort(a, b):

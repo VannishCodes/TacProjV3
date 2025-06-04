@@ -24,3 +24,5 @@ script = ExtResource("1_x0e5n")
 z_index = 1
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_yuyu4")
+
+[node name="Camera2D" type="Camera2D" parent="Cursor"]
