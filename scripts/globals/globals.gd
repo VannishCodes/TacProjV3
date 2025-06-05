@@ -16,3 +16,9 @@ enum ELEMENTS{
 	DARK,
 	MANA
 }
+
+enum DAMAGE_TYPE{
+	PHYSICAL,
+	MAGICAL,
+	TRUE
+}

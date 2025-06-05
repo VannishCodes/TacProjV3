@@ -27,6 +27,7 @@ const base_critical_strike = 2.0
 
 #Complex Stats
 var wait_timer : int
+var accuracy : int
 var evasion : int
 var critical_strike_chance : int
 var critical_strike_damage : int
@@ -49,6 +50,9 @@ func calculate_wait_timer() -> void:
 	var unrounded_result : float
 	unrounded_result = base_turn_wait_time * (wait_time_coefficient / (wait_time_coefficient + speed))
 	wait_timer = int(unrounded_result)
+	
+func calculate_accuracy() -> void:
+	accuracy = dexterity * 2
 	
 func calculate_evasion() -> void:
 	evasion = agility
