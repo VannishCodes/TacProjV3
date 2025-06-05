@@ -8,10 +8,6 @@ var turn_queue : Array[CountablePair]
 
 signal turn_queue_changed
 signal current_character_changed
-"""
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("act"):
-		end_turn()"""
 
 func initialize(characters : Array[Character]) -> void:
 	active_characters = characters
@@ -52,4 +48,6 @@ func sort(a, b):
 	if a.first < b.first:
 		return true
 	return false
-	
+
+func _on_action_menu_end_button_pressed() -> void:
+	end_turn()

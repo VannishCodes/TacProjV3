@@ -40,6 +40,7 @@ var status_effect_evasion : int
 
 func initialize_complex_stats() -> void:
 	calculate_wait_timer()
+	calculate_accuracy()
 	calculate_evasion()
 	calculate_critical_strike_chance()
 	calculate_critical_strike_damage()

@@ -16,3 +16,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("cancel"):
 		current_level.active_grid.revert_character_movement_simulation(turn_handler.current_character)
+
+func _on_action_menu_attack_button_pressed() -> void:
+	print("Targeting menu not implemented yet")
+	print("Damage preview menu not implemented yet")
+	print("Here is a damage preview anyway")
+	print(CombatCalculator.calculate_hit_chance($Level/Grid/Characters/Character, $Level/Grid/Characters/Character2))
+	print(CombatCalculator.calculate_damage_dealt($Level/Grid/Characters/Character, $Level/Grid/Characters/Character2, Globals.DAMAGE_TYPE.PHYSICAL))

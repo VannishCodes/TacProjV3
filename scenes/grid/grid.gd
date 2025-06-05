@@ -207,6 +207,7 @@ func grid_to_global(location : Vector2i) -> Vector2:
 
 func grid_to_global_centered(location : Vector2i) -> Vector2:
 	var global_location : Vector2
+	@warning_ignore("integer_division")
 	global_location = Vector2(location * Globals.TILE_SIZE + 
 		Vector2i(Globals.TILE_SIZE / 2, Globals.TILE_SIZE / 2))
 	return global_location
