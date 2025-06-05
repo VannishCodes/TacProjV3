@@ -13,14 +13,19 @@ func _on_turn_handler_turn_queue_changed(turn_queue : Array[CountablePair]) -> v
 	var character : Character
 	var texture_rect : TextureRect
 	var label : Label
+	var first : bool = true
 	for pair in turn_queue:
 		character = pair.second
 		texture_rect = TextureRect.new()
 		texture_rect.texture = character.stats.default_texture
 		initialize_texture_rect(texture_rect)
 		label = Label.new()
-		label.text = str(pair.first)
-		label.add_theme_font_size_override("font_size", font_size)
+		if first:
+			label.text = str("C")
+			first = false
+		else:
+			label.text = str(pair.first)
+		initialize_label(label)
 		timing_container.add_child(label)
 		character_container.add_child(texture_rect)
 		
@@ -32,6 +37,9 @@ func empty_containers() -> void:
 	for child in character_container.get_children():
 		character_container.remove_child(child)
 		child.queue_free()
+		
+func initialize_label(label : Label) -> void:
+	label.add_theme_font_size_override("font_size", font_size)
 		
 func initialize_texture_rect(texture_rect : TextureRect) -> void:
 	texture_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
