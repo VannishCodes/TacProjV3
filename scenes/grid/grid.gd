@@ -7,6 +7,7 @@ var grid : AStarGrid2D
 var character_locations : Dictionary = {}
 
 signal on_cursor_moved
+signal on_movement_simulated
 
 func _ready() -> void:
 	var tile_map_layer : TileMapLayer = get_tree().get_first_node_in_group("map_tiles")
@@ -184,6 +185,8 @@ func simulate_character_movement(character : Character) -> void:
 	
 	if is_tile_reachable(current_location, destination, character):		
 		character.global_position = cursor.global_position
+		on_movement_simulated.emit()
+		
 	else:
 		print("Can't move there!")
 		
