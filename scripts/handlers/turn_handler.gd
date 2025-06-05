@@ -8,10 +8,10 @@ var turn_queue : Array[CountablePair]
 
 signal turn_queue_changed
 signal current_character_changed
-
+"""
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("act"):
-		end_turn()
+		end_turn()"""
 
 func initialize(characters : Array[Character]) -> void:
 	active_characters = characters
@@ -44,6 +44,9 @@ func end_turn() -> void:
 	turn_queue.append(CountablePair.new(current_character.stats.wait_timer, current_character))
 	turn_queue.sort_custom(sort)
 	manage_turn()
+	
+func is_player_turn() -> bool:
+	return current_character.stats.playable
 	
 func sort(a, b):
 	if a.first < b.first:

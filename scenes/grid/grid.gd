@@ -174,3 +174,36 @@ func is_target_reachable(origin : Vector2i, destination : Vector2i, character : 
 		return false
 		
 	return true
+
+func simulate_character_movement(character : Character) -> void:
+	var tile_map : TileMapLayer
+	tile_map = get_tree().get_first_node_in_group("map_tiles")
+	
+	var current_location: Vector2i = character_locations[character]
+	var destination : Vector2i = tile_map.local_to_map(cursor.position)
+	
+	if is_tile_reachable(current_location, destination, character):		
+		character.global_position = cursor.global_position
+	else:
+		print("Can't move there!")
+		
+func revert_character_movement_simulation(character : Character) -> void:
+	var old_position : Vector2 = grid_to_global_centered(character_locations[character])
+	character.global_position = old_position
+	cursor.global_position = old_position
+
+func execute_movement(character : Character) -> void:
+	tile_handler.get_tile(character_locations[character]).character = null
+	character_locations[character] = get_character_grid_location(character)
+	tile_handler.get_tile(get_character_grid_location(character)).character = character
+	
+func grid_to_global(location : Vector2i) -> Vector2:
+	var global_location : Vector2
+	global_location = Vector2(location * Globals.TILE_SIZE)
+	return global_location
+
+func grid_to_global_centered(location : Vector2i) -> Vector2:
+	var global_location : Vector2
+	global_location = Vector2(location * Globals.TILE_SIZE + 
+		Vector2i(Globals.TILE_SIZE / 2, Globals.TILE_SIZE / 2))
+	return global_location
